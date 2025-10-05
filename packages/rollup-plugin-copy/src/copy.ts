@@ -74,6 +74,9 @@ export function copy(options: IOptions = {}): rollup.Plugin {
         await handleCopy()
       }
     },
+    configureServer: () => {
+      isWatchMode = true;
+    },
     watchChange: () => {
       isWatchMode = true
     },
