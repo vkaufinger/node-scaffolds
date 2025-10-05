@@ -17,8 +17,8 @@ export class CopyWatcher {
   protected copying: boolean
   protected _isClosed: boolean
 
-  constructor(workspace: string) {
-    const watcher: FSWatcher = chokidar.watch(workspace, {
+  constructor(root: string, workspace: string) {
+    const watcher: FSWatcher = chokidar.watch(root, {
       cwd: workspace,
       ignoreInitial: true,
       persistent: true,
