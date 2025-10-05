@@ -53,6 +53,7 @@ export function copy(options: IOptions = {}): rollup.Plugin {
     [hook]: handleCopy,
     async [watchHook]() {
       const context: rollup.PluginContext = this as any
+      const {root} = context.environment._topLevelConfig
 
       if (!copyOnce) {
         if (!isWatchMode) {
@@ -62,7 +63,7 @@ export function copy(options: IOptions = {}): rollup.Plugin {
 
         if (isWatchMode) {
           if (watcher === undefined) {
-            watcher = new CopyWatcher(path.resolve())
+            watcher = new CopyWatcher(root, path.resolve())
             await fullCopy()
           }
           watcher?.watchTargets(targets)
